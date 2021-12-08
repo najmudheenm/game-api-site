@@ -8,6 +8,7 @@ import { loadGames } from "../actions/gamesAction";
 //--------- components ----------------//
 
 import Game from "../componets/Game";
+import GameDeatail from "../componets/GameDeatail";
 
 //-------- styling and animation -------------//
 
@@ -20,9 +21,10 @@ function Home() {
     dispatch(loadGames());
   }, [dispatch]);
   const { popular, newGame, upcoming } = useSelector((state) => state.games);
-  console.log(Object.isN);
+
   return (
     <GameList>
+      <GameDeatail />
       <h2>Upcoming Games</h2>
       <Games>
         {Object.keys(upcoming).length !== 0 ? (
