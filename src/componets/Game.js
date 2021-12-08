@@ -3,6 +3,7 @@ import React from "react";
 
 import { useDispatch } from "react-redux";
 import { loadDatail } from "../actions/deatailAction";
+import { Link } from "react-router-dom";
 
 //---------- Styling and animation -------------//
 
@@ -16,12 +17,14 @@ function Game({ name, released, id, image }) {
     dispatch(loadDatail(id));
   };
   return (
-    <StyledGame onClick={loadDeatailsHandler}>
-      <h3>{name}</h3>
-      <p>{released}</p>
+    <Link to={"" + id}>
+      <StyledGame>
+        <h3>{name}</h3>
+        <p>{released}</p>
 
-      <img loading="lazy" src={image} alt={name} />
-    </StyledGame>
+        <img loading="lazy" src={image} alt={name} />
+      </StyledGame>
+    </Link>
   );
 }
 const StyledGame = styled(motion.div)`

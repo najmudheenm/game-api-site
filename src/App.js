@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router-dom";
+
 //----------import component and pages ---------------
 
 import GlobalStyle from "./GlobalStyle";
@@ -8,7 +10,10 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path=":id" element={<Home />} />
+      </Routes>
     </>
   );
 }

@@ -4,15 +4,14 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 //---------- redux --------
-import { useSelector, useDispatch } from "react-redux";
-import { clearGameDetails } from "../actions/deatailAction";
+import { useSelector } from "react-redux";
 
 const GameDeatail = () => {
-  const { game, screen } = useSelector((state) => state.detail);
-  const dispatch = useDispatch();
-  if (Object.keys(game).length !== 0) {
+  const { game, screen, isData } = useSelector((state) => state.detail);
+
+  if (isData) {
     return (
-      <CardShadow onClick={() => dispatch(clearGameDetails())}>
+      <CardShadow>
         <Detail>
           <Stats>
             <div className="rating">

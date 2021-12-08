@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 
+import { useLocation } from "react-router-dom";
 //------------- redux -----------------//
 
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
+import { loadDatail } from "../actions/deatailAction";
 
 //--------- components ----------------//
 
@@ -16,15 +18,22 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 function Home() {
+  const path = useLocation().pathname.split("/")[1];
+  console.log(path);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
-  }, [dispatch]);
-  const { popular, newGame, upcoming } = useSelector((state) => state.games);
+    if (path) {
+      dispatch(loadDatail(path));
+    }
+  }, [dispatch, path]);
+  const { popular, newGame, upcoming, game } = useSelector(
+    (state) => state.games
+  );
 
   return (
     <GameList>
-      <GameDeatail />
+      {path && <GameDeatail />}
       <h2>Upcoming Games</h2>
       <Games>
         {Object.keys(upcoming).length !== 0 ? (

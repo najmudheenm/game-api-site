@@ -9,17 +9,22 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./reducer";
 import thunk from "redux-thunk";
+import { BrowserRouter } from "react-router-dom";
 
+const composeEnchanser = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const composeEnchanser=  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__||compose
-
-const store = createStore(rootReducer,composeEnchanser(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeEnchanser(applyMiddleware(thunk))
+);
 
 //--------------------------------------------------------------------------
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
